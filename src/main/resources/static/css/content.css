@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+td.content_box {
+	background-color: #FFF8E6;
+}
+
+span.content_text {
+	font-size: 20px;
+	color: #D39D55;
+	font-family: NamumGothic;
+	font-weight: bold;
+}
+
+input.input_box {
+	border: 1px solid #D39D55;
+	width: 250px;
+	font-size: 20px;
+	font-family: Arial;
+	padding: 5px;
+}
+
+input.content_btn {
+	border: 2px solid #D39D55;
+	width: 150px;
+	height: 40px;
+	background-color: #D6CFB4;
+	font-size: 20px;
+}

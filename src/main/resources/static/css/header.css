@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+tr.header_line {
+	background-color: #D39D55;
+}
+
+span.header_menu {
+	color: #FFF8E6;
+	font-family: Arial;
+	font-size: 16px;
+}
+
+a.header_link:link {
+	text-decoration: none;
+	color: inherit;
+}
+
+a.header_link:hover {
+	/* font-weight: bold; */
+	text-decoration: underline;
+	color: #FFF8E6;
+}

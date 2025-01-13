@@ -27,50 +27,42 @@
 				<table border="0" cellpadding="10" cellspacing="0"  width="60%" class="content_box" height="530">
 				<form action="loginOk" method="post" name="loginForm">
 					<tr>
-						<td colspan="2">
-							&nbsp
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							&nbsp
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							&nbsp
-						</td>
-					</tr>
-					<tr>
-						<td align="right" width="40%">
-							<span class="content_text">아이디 :</span> 
-						</td>
 						<td>
-							<input type="text" name="mid" class="input_box">
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							<span class="content_text">비밀번호 :</span> 
-						</td>
-						<td>
-							<input type="password" name="mpw" class="input_box">
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
 							&nbsp
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td>
+							&nbsp
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&nbsp
+						</td>
+					</tr>
+					<tr>
+						<td align="center" width="40%">
+							<span class="content_text">
+								너와 함께한 시간 모두 눈부셨다<br>
+								날이 좋아서 날이 좋지 않아서 날이 적당해서 모든 날이 좋았다<br>
+								함께하자
+							</span> 
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&nbsp
+						</td>
+					</tr>
+					<tr>
+						<td>
 							&nbsp
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="submit" value="회원가입" class="content_btn">&nbsp&nbsp
-							<input type="button" value="로그인" class="content_btn">
+							&nbsp
 						</td>
 					</tr>
 				</form>

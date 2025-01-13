@@ -25,5 +25,14 @@ public class HomeController {
 	public String login() {
 		return "login";
 	}
-
+	
+	@GetMapping(value = "/profile")
+	public String profile() {
+		return "profile";
+	}
+	
+	@GetMapping(value = "/contact")
+	public String contact() {
+		return "contact";
+	}
 }

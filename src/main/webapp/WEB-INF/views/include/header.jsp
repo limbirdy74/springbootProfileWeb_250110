@@ -32,7 +32,7 @@
 				&nbsp
 			</td>
 			<td width="4%">
-				<a href="#" class="header_link"><span class="header_menu">PROFILE</span></a>
+				<a href="profile" class="header_link"><span class="header_menu">PROFILE</span></a>
 			</td>
 			<td width="1%">
 				&nbsp
@@ -44,7 +44,7 @@
 				&nbsp
 			</td>
 			<td width="4%">
-				<a href="#" class="header_link"><span class="header_menu">CONTACT</span></a>
+				<a href="contact" class="header_link"><span class="header_menu">CONTACT</span></a>
 			</td>
 			<td width="3%">
 				&nbsp

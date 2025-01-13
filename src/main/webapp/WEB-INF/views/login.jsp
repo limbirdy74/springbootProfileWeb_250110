@@ -27,7 +27,17 @@
 				<table border="0" cellpadding="10" cellspacing="0"  width="60%" class="content_box" height="530">
 				<form action="joinOk" method="post" name="joinForm">
 					<tr>
-						<td>
+						<td colspan="2">
+							&nbsp
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							&nbsp
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
 							&nbsp
 						</td>
 					</tr>
@@ -48,31 +58,12 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="right">
-							<span class="content_text">비밀번호 확인 :</span> 
-						</td>
-						<td>
-							<input type="password" name="mpw_chekck" class="input_box">
+						<td colspan="2">
+							&nbsp
 						</td>
 					</tr>
 					<tr>
-						<td align="right">
-							<span class="content_text">회원이름 :</span> 
-						</td>
-						<td>
-							<input type="text" name="mname" class="input_box">
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							<span class="content_text">이메일 :</span> 
-						</td>
-						<td>
-							<input type="text" name="memail" class="input_box">
-						</td>
-					</tr>
-					<tr>
-						<td>
+						<td colspan="2">
 							&nbsp
 						</td>
 					</tr>

@@ -20,7 +20,7 @@
 				&nbsp
 			</td>
 			<td width="4%">
-				<a href="#" class="header_link"><span class="header_menu">LOGIN</span></a>
+				<a href="login" class="header_link"><span class="header_menu">LOGIN</span></a>
 			</td>
 			<td width="1%">
 				&nbsp

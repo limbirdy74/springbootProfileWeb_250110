@@ -20,5 +20,10 @@ public class HomeController {
 	public String join() {
 		return "join";
 	}
+	
+	@GetMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
 
 }

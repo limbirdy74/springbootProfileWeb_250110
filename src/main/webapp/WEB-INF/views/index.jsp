@@ -10,8 +10,7 @@
 <body>
 	<%@ include file="include/header.jsp" %>
 	
-	<center>
-	<table border="0" cellpadding="20" cellspacing="0">
+	<table border="0" cellpadding="20" cellspacing="0"  width="100%">
 		<tr>
 			<td align="center">
 				<span class="title_text01">DEVELOPER TAEYOUNG's PROFILE</span>
@@ -24,12 +23,12 @@
 		</tr>
 		<tr>
 			<td align="center">
-				<table border="0" cellpadding="10" cellspacing="0">
+				<table border="0" cellpadding="10" cellspacing="0" width="55%">
 					<tr>
 						<td class="skill_box">
 							<span class="skill_text01">J</span><span class="skill_text02">AVA</span>
 						</td>
-						<td rowspan="6" class="image_box">
+						<td rowspan="6" class="image_box" align="center">
 							<img src="../resources/img/springboot.jpg">
 						</td>
 					</tr>
@@ -62,7 +61,6 @@
 			</td>
 		</tr>
 	</table>
-	</center>
 	
 	<%@ include file="include/footer.jsp" %>
 </body>

@@ -64,7 +64,8 @@
 					<tr>						
 						<td colspan="2" align="center">
 							<input type="submit" value="수정완료" class="content_btn"">
-							<input type="button" value="수정취소" class="content_btn" onclick="javascript:location.href='history.go(-1)'">
+<!-- 							<input type="button" value="수정취소" class="content_btn" onclick="javascript:location.href='history.go(-1)'"> -->
+							<input type="button" value="수정취소" class="content_btn" onclick ="history.go(-1); return false;">
 							<input type="button" value="글목록" class="content_btn" onclick="javascript:location.href='list'">
 						</td>
 					</tr>

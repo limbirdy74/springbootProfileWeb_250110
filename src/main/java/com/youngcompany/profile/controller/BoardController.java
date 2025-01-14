@@ -120,4 +120,28 @@ public class BoardController {
 			
 			return "redirect:list";
 		}
+		
+		@GetMapping(value = "/contentDelete")
+		public String contentDelete(HttpServletRequest request, Model model, HttpSession session) {
+			
+			String bnum = request.getParameter("bnum"); // 사용자가 클릭한 글번호
+			String sid = (String) session.getAttribute("sessionid");
+			
+			BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+			BoardDto bDto = bDao.contentViewDao(bnum);
+			
+			if(sid.equals(bDto.getBid())) {
+				
+				bDao.contentDeleteDao(bnum);
+				
+				return "redirect:list";
+				
+			} else {
+				model.addAttribute("msg", "글을 작성한 사용자만 삭제권한이 있습니다.");
+				
+				return "alert/alert2";
+			}
+			
+
+		}
 }

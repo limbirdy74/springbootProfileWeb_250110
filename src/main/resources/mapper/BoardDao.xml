@@ -24,4 +24,9 @@
 	<update id="contentModifyDao">
 		UPDATE profileboard SET btitle = #{param2}, bcontent = #{param3} WHERE bnum = #{param1}
 	</update>
+	
+	<!-- 글 삭제하기 -->
+	<delete id="contentDeleteDao">
+		DELETE FROM profileboard WHERE bnum = #{param1}
+	</delete>
 </mapper>

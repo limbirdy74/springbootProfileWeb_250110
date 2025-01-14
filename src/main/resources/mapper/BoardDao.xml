@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.youngcompany.profile.dao.BoardDao">
+
+	<!-- 글쓰기 -->
+	<insert id="writeDao">
+		INSERT INTO profileboard(bnum, bid, bname, btitle, bcontent, bhit) VALUES (profileboard_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, 0)
+	</insert>
+	
+	<!-- 모든 글 가져오기 -->
+	<select id="listDao" resultSets="com.youngcompany.profile.dto.BoardDto">
+		SELECT * FROM profileboard ORDER BY bnum DESC
+	</select>
+	
+	<!-- 글번호 내용 가져오기 -->
+	<select id="contentViewDao" resultSets="com.youngcompany.profile.dto.BoardDto">
+		SELECT * FROM profileboard WHERE bnum = #{param1}
+	</select>
+	
+	<!-- 글 수정하기 -->
+	<update id="contentModifyDao">
+		UPDATE profileboard SET btitle = #{param2}, bcontent = #{param3} WHERE bnum = #{param1}
+	</update>
+</mapper>

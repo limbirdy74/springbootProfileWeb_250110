@@ -15,7 +15,16 @@ input.input_box {
 	border: 1px solid #D39D55;
 	width: 250px;
 	font-size: 20px;
-	font-family: Arial;
+	font-family: NamumGothic, Arial;
+	padding: 5px;
+}
+
+input.input_box_noedit {
+	border: 0px solid;
+	background-color: #b3d9ff;
+	width: 250px;
+	font-size: 20px;
+	font-family: NamumGothic, Arial;
 	padding: 5px;
 }
 
@@ -25,4 +34,32 @@ input.content_btn {
 	height: 40px;
 	background-color: #D6CFB4;
 	font-size: 20px;
+}
+
+input.content_btn:hover {
+	border: 2px solid #D39D55;
+	width: 150px;
+	height: 40px;
+	background-color: #f7f5f0;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+input.check_btn {
+	border: 1px solid #D39D55;
+	width: 100px;
+	height: 35px;
+	background-color: #f7f5f0;
+	font-size: 15px;
+	padding:5px;
+}
+
+input.check_btn:hover {
+	border: 1px solid #D39D55;
+	width: 100px;
+	height: 35px;
+	background-color: #f7f5f0;
+	font-size: 15px;
+	padding:5px;
+	cursor: pointer;
 }

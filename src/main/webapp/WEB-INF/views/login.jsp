@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/css/title.css">
 <link rel="stylesheet" href="../resources/css/content.css">
-<title>회원가입</title>
+<script type="text/javascript" src="../resources/js/login.js"></script>
+<title>로그인</title>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
@@ -25,7 +26,7 @@
 		<tr>
 			<td align="center" height="500">
 				<table border="0" cellpadding="10" cellspacing="0"  width="60%" class="content_box" height="530">
-				<form action="loginOk" method="post" name="loginForm">
+				<form action="loginOk" method="post" name="loginForm" onsubmit="return loginCheck()">
 					<tr>
 						<td colspan="2">
 							&nbsp
@@ -69,8 +70,8 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<input type="submit" value="회원가입" class="content_btn">&nbsp&nbsp
-							<input type="button" value="로그인" class="content_btn">
+							<input type="submit" value="로그인" class="content_btn">&nbsp&nbsp
+							<input type="button" value="회원가입" class="content_btn" onclick="javascript:location.href='join'">
 						</td>
 					</tr>
 				</form>

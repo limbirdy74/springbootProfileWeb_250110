@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.youngcompany.profile.dao.BoardDao;
 import com.youngcompany.profile.dao.MemberDao;
 import com.youngcompany.profile.dto.BoardDto;
+import com.youngcompany.profile.dto.Criteria;
 import com.youngcompany.profile.dto.MemberDto;
+import com.youngcompany.profile.dto.PageDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -61,10 +63,19 @@ public class BoardController {
 		}
 		
 		@GetMapping(value = "/list")
-		public String board(HttpServletRequest request, Model model) {
+		public String board(HttpServletRequest request, Model model, Criteria criteria) {
 			
 			BoardDao bDao= sqlSession.getMapper(BoardDao.class);
-			ArrayList<BoardDto> bDtos = bDao.listDao();
+			
+			String pageNum = request.getParameter("pageNum"); // 사용자가 클릭한 게시판의 페이지 번호
+					
+			criteria.setPageNum(Integer.parseInt(pageNum));
+			// 사용자가 클릭한 페이지 번호를 criteria 객체 내의 멤버변수인 pageNum 값으로 설정
+			int total = bDao.totalBoardCountDao(); // 게시판 내 모든 글의 갯수
+			
+			PageDto pageDto = new PageDto(total, criteria);
+			
+			ArrayList<BoardDto> bDtos = bDao.listDao(); // 모든 글 가져오기
 			
 			model.addAttribute("bDtos", bDtos);
 					
@@ -132,9 +143,22 @@ public class BoardController {
 			
 			if(sid.equals(bDto.getBid())) {
 				
-				bDao.contentDeleteDao(bnum);
+//				int deleteFlag = bDao.contentDeleteDao(bnum);
+//				
+//				if(deleteFlag == 1) {
+				if(bDao.contentDeleteDao(bnum) == 1) {
+					model.addAttribute("msg", "글이 성공적으로 삭제되었습니다.");
+					model.addAttribute("url", "list");
+					
+					return "alert/alert";
+				} else {
+					model.addAttribute("msg", "글이 삭제가 실패하였습니다.");
+					model.addAttribute("url", "list");
+					
+					return "alert/alert";
+				}
 				
-				return "redirect:list";
+//				return "redirect:list";
 				
 			} else {
 				model.addAttribute("msg", "글을 작성한 사용자만 삭제권한이 있습니다.");

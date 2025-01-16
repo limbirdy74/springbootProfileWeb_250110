@@ -28,7 +28,6 @@
 		<tr>
 			<td align="center" height="500">
 				<table border="0" cellpadding="10" cellspacing="0"  width="60%" class="content_box" height="530">
-				<form action="loginOk" method="post" name="loginForm">
 					<tr class="board_title_tr">
 						<th class="board_title_td" width="7%">번호</th>
 						<th class="board_title_td" width="9%">아이디</th>
@@ -65,12 +64,17 @@
 							&nbsp
 						</td>
 					</tr>
+					<!-- 페이징 페이지 표시 -->
+					<tr>
+						<td colspan="6">
+							◀◀ ◀ 1 <a href="list?pageNum=2">2</a> <a href="list?pageNum=3">3</a> 4 5 6 7 8 9 10 ▶ ▶▶
+						</td>
+					</tr>
 					<tr>
 						<td colspan="6" align="right">
 							<input type="button" value="글쓰기" class="content_btn" onclick="javascript:location.href='write'">
 						</td>
 					</tr>
-				</form>
 				</table>
 			</td>
 		</tr>

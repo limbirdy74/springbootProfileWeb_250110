@@ -61,9 +61,18 @@
 					</tr>
 					<tr>						
 						<td colspan="2" align="center">
-							<input type="button" value="글수정" class="content_btn" onclick="javascript:location.href='contentModify?bnum=${bDto.bnum }'">
-							<input type="button" value="글삭제" class="content_btn" onclick="javascript:location.href='contentDelete?bnum=${bDto.bnum }'">
-							<input type="button" value="글목록" class="content_btn" onclick="javascript:location.href='list'">
+						<!-- 로그인한 사용자만 글수정, 글삭제 버튼이 보이게 함 -->
+							<c:choose>
+								<c:when test="${sessionid != null}">
+									<input type="button" value="글수정" class="content_btn" onclick="javascript:location.href='contentModify?bnum=${bDto.bnum }'">
+									<input type="button" value="글삭제" class="content_btn" onclick="javascript:location.href='contentDelete?bnum=${bDto.bnum }'">
+									<input type="button" value="글목록" class="content_btn" onclick="javascript:location.href='list'">								
+									
+								</c:when>
+								<c:otherwise>
+									<input type="button" value="글목록" class="content_btn" onclick="javascript:location.href='list'">
+								</c:otherwise>
+							</c:choose>
 						</td>
 						
 					</tr>

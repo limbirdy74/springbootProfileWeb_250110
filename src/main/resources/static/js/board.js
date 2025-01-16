@@ -10,7 +10,7 @@ function writeCheck() {
 		return false;
 	}
 	
-	if(document.writeForm.bcontent.value.length <= 10 ) {
+	if(document.writeForm.bcontent.value.length < 10 ) {
 		alert("내용은 10자 이상 입력하여야 합니다.")
 		document.writeForm.bcontent.focus();
 		return false;

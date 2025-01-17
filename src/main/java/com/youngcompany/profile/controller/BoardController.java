@@ -69,15 +69,23 @@ public class BoardController {
 			
 			String pageNum = request.getParameter("pageNum"); // 사용자가 클릭한 게시판의 페이지 번호
 					
-			criteria.setPageNum(Integer.parseInt(pageNum));
-			// 사용자가 클릭한 페이지 번호를 criteria 객체 내의 멤버변수인 pageNum 값으로 설정
+			if(pageNum != null) {  // 그냥 list 요청으로 오면 pageNum 값이 null 이어서
+				criteria.setPageNum(Integer.parseInt(pageNum));
+				// 사용자가 클릭한 페이지 번호를 criteria 객체 내의 멤버변수인 pageNum 값으로 설정
+			}
+
 			int total = bDao.totalBoardCountDao(); // 게시판 내 모든 글의 갯수
 			
 			PageDto pageDto = new PageDto(total, criteria);
 			
-			ArrayList<BoardDto> bDtos = bDao.listDao(); // 모든 글 가져오기
+			//int realEndPage = (int) Math.ceil(total*1.0 / criteria.getAmount()); // 실제 마지막 페이지
+			
+			ArrayList<BoardDto> bDtos = bDao.listDao(criteria.getAmount(), criteria.getPageNum()); // 모든 글 가져오기 에서
+			// 인수로 한페이지에 보여질 글의 갯수와 사용자가 클릭한 페이지의 번호를 입력해서 호출
 			
 			model.addAttribute("bDtos", bDtos);
+			model.addAttribute("pageDto", pageDto);
+			model.addAttribute("currentPage", criteria.getPageNum());
 					
 			return "board";
 		}
@@ -86,11 +94,15 @@ public class BoardController {
 		public String contentView(HttpServletRequest request, Model model) {
 			
 			String bnum = request.getParameter("bnum"); // 사용자가 클릭한 글번호
-			
+			String currPage = request.getParameter("pageNum"); // 현재 사용자가 글 제목을 클릭했던 페이지의 번호
 			BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+			
+			bDao.updateHitDao(bnum); // 조회수 1 증가. 250117 추가
+			
 			BoardDto bDto = bDao.contentViewDao(bnum);
 			
 			model.addAttribute("bDto", bDto);
+			model.addAttribute("currPage", currPage);
 			
 			return "contentView";
 		}
@@ -135,34 +147,61 @@ public class BoardController {
 		@GetMapping(value = "/contentDelete")
 		public String contentDelete(HttpServletRequest request, Model model, HttpSession session) {
 			
-			String bnum = request.getParameter("bnum"); // 사용자가 클릭한 글번호
-			String sid = (String) session.getAttribute("sessionid");
+//			String bnum = request.getParameter("bnum"); // 사용자가 클릭한 글번호
+//			String currPageNum = request.getParameter("pageNum");//삭제한 글이 있는 페이지 //250117 삭제한 글이 있는 페이지
+//			
+//			String sid = (String) session.getAttribute("sessionid");
+//			
+//			BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+//			BoardDto bDto = bDao.contentViewDao(bnum);
+//			
+//			if(sid.equals(bDto.getBid())) {
+//				
+////				int deleteFlag = bDao.contentDeleteDao(bnum);
+////				
+////				if(deleteFlag == 1) {
+//				if(bDao.contentDeleteDao(bnum) == 1) {
+//					model.addAttribute("msg", "글이 성공적으로 삭제되었습니다.");
+//					model.addAttribute("url", "list?pageNum="+currPageNum);
+//					
+//					return "alert/alert";
+//				} else {
+//					model.addAttribute("msg", "글이 삭제가 실패하였습니다.");
+//					model.addAttribute("url", "list");
+//					
+//					return "alert/alert";
+//				}
+//				
+////				return "redirect:list";
+//				
+//			} else {
+//				model.addAttribute("msg", "글을 작성한 사용자만 삭제권한이 있습니다.");
+//				
+//				return "alert/alert2";
+//			}
+			
+			String bnum = request.getParameter("bnum");//삭제할 글의 번호
+			String currPageNum = request.getParameter("pageNum");//삭제한 글이 있는 페이지
 			
 			BoardDao bDao = sqlSession.getMapper(BoardDao.class);
-			BoardDto bDto = bDao.contentViewDao(bnum);
+			BoardDto bDto = bDao.contentViewDao(bnum);//해당 글 번호의 모든 정보 가져오기
 			
-			if(sid.equals(bDto.getBid())) {
-				
-//				int deleteFlag = bDao.contentDeleteDao(bnum);
-//				
-//				if(deleteFlag == 1) {
-				if(bDao.contentDeleteDao(bnum) == 1) {
+			String sid = (String) session.getAttribute("sessionid");//현재 로그인한 사용자의 아이디		
+			
+			if(sid.equals(bDto.getBid())) {//현재 로그인한 사용자 아이디와 글쓴사용자의 아이디 비교
+				if(bDao.contentDeleteDao(bnum) == 1) {//참이면 삭제 성공
 					model.addAttribute("msg", "글이 성공적으로 삭제되었습니다.");
-					model.addAttribute("url", "list");
+					model.addAttribute("url", "list?pageNum="+currPageNum);
 					
 					return "alert/alert";
 				} else {
-					model.addAttribute("msg", "글이 삭제가 실패하였습니다.");
+					model.addAttribute("msg", "글 삭제가 실패하였습니다.");
 					model.addAttribute("url", "list");
 					
-					return "alert/alert";
+					return "alert/alert";//삭제 실패시 리스트로 돌아가기
 				}
-				
-//				return "redirect:list";
-				
 			} else {
-				model.addAttribute("msg", "글을 작성한 사용자만 삭제권한이 있습니다.");
-				
+				model.addAttribute("msg", "해당 글의 삭제 권한이 없습니다.");			
 				return "alert/alert2";
 			}
 			

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../resources/css/title.css">
 <link rel="stylesheet" href="../resources/css/content.css">
 <link rel="stylesheet" href="../resources/css/board.css">
-<title>회원가입</title>
+<title>게시판</title>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
@@ -42,7 +42,7 @@
 						<td class="board_content_td" align="center">${bDto.bid }</td>
 						<td class="board_content_td" align="center">${bDto.bname }</td>
 						<td class="board_content_td">
-							<a class="board_link" href="contentView?bnum=${bDto.bnum }">
+							<a class="board_link" href="contentView?pageNum=${currentPage}&bnum=${bDto.bnum}">
 							<c:choose>
 								<c:when test="${fn:length(bDto.btitle) > 30}">
 									${fn:substring(bDto.btitle, 0, 30) }...
@@ -59,16 +59,35 @@
 						<td class="board_content_td" align="center">${bDto.bhit }</td>
 					</tr>
 					</c:forEach>
-					<tr>
-						<td colspan="6">
-							&nbsp
+					<tr height="10">
+						<td>
 						</td>
 					</tr>
 					<!-- 페이징 페이지 표시 -->
 					<tr>
-						<td colspan="6">
-							◀◀ ◀ 1 <a href="list?pageNum=2">2</a> <a href="list?pageNum=3">3</a> 4 5 6 7 8 9 10 ▶ ▶▶
+						<td colspan="6" align="center">
+							<c:if test="${pageDto.prev}">
+							<a href="list?pageNum=1" class="pageHref"><span class="pagelink">≪</span></a>&nbsp;
+							<a href="list?pageNum=${pageDto.startPage - 1 }" class="pageHref"><span class="pagelink">＜</span></a>
+							</c:if>
+							&nbsp;&nbsp;
+							<c:forEach var="pageNumber" begin="${pageDto.startPage}" end="${pageDto.endPage}">
+								<c:choose>
+									<c:when test="${currentPage == pageNumber}">
+										<span class="currPagelink">${pageNumber}</span>&nbsp;
+									</c:when>
+									<c:otherwise>
+										<a href="list?pageNum=${pageNumber}" class="pageHref"><span class="pagelink">${pageNumber}</span></a>&nbsp;
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							&nbsp;&nbsp;
+							<c:if test="${pageDto.next}">
+							<a href="list?pageNum=${pageDto.endPage + 1 }" class="pageHref"><span class="pagelink">＞</span></a>&nbsp;
+							<a href="list?pageNum=${pageDto.realEndPage }" class="pageHref"><span class="pagelink">≫</span></a>
+							</c:if>
 						</td>
+                        <!-- ◀◀ ◀ 1 <a href="list?pageNum=2">2</a> <a href="list?pageNum=3">3</a> 4 5 6 7 8 9 10 ▶ ▶▶ -->
 					</tr>
 					<tr>
 						<td colspan="6" align="right">
